@@ -1,13 +1,13 @@
 import telebot
 import json
 import os
-from flask import Flask, jsonify
+import requests
+from flask import Flask, jsonify, redirect
 from flask_cors import CORS
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# Render-এ Environment Variable হিসেবে BOT_TOKEN সেট করে নিও
 API_TOKEN = os.getenv('BOT_TOKEN')
 bot = telebot.TeleBot(API_TOKEN)
 app = Flask(__name__)
@@ -31,13 +31,13 @@ def save_data(data):
 def handle_video(message):
     video_db = load_data()
     file_id = message.video.file_id
-    caption = message.caption if message.caption else f"Premium Video {len(video_db) + 1}"
+    caption = message.caption if message.caption else f"Video {len(video_db) + 1}"
     
     new_video = {
         "id": len(video_db) + 1,
         "title": caption,
         "file_id": file_id,
-        "thumb": f"https://picsum.photos/seed/{len(video_db)}/200/300"
+        "thumb": "https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=200&h=300&fit=crop"
     }
     
     video_db.append(new_video)
@@ -48,13 +48,19 @@ def handle_video(message):
 def get_videos():
     return jsonify(load_data())
 
+# এই অংশটি ভিডিও স্ট্রিমিং লিঙ্ক তৈরি করবে
+@app.route('/stream/<file_id>')
+def stream_video(file_id):
+    file_info = bot.get_file(file_id)
+    file_url = f"https://api.telegram.org/file/bot{API_TOKEN}/{file_info.file_path}"
+    return redirect(file_url)
+
 @app.route('/')
 def home():
     return "Bot is Running!"
 
 if __name__ == "__main__":
     from threading import Thread
-    # Render-এর জন্য পোর্ট সেট করা হয়েছে
     port = int(os.environ.get("PORT", 10000))
     Thread(target=lambda: app.run(host='0.0.0.0', port=port)).start()
     bot.polling(non_stop=True)
