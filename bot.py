@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# সরাসরি টোকেন না দিয়ে এনভায়রনমেন্ট ভেরিয়েবল ব্যবহার
+# Render-এ Environment Variable হিসেবে BOT_TOKEN সেট করে নিও
 API_TOKEN = os.getenv('BOT_TOKEN')
 bot = telebot.TeleBot(API_TOKEN)
 app = Flask(__name__)
@@ -42,13 +42,19 @@ def handle_video(message):
     
     video_db.append(new_video)
     save_data(video_db)
-    bot.reply_to(message, f"✅ '{caption}' সেভ হয়েছে!\nমোট ভিডিও: {len(video_db)}")
+    bot.reply_to(message, f"✅ সেভ হয়েছে: {caption}")
 
 @app.route('/get_videos')
 def get_videos():
     return jsonify(load_data())
 
+@app.route('/')
+def home():
+    return "Bot is Running!"
+
 if __name__ == "__main__":
     from threading import Thread
-    Thread(target=lambda: app.run(host='0.0.0.0', port=10000)).start()
-    bot.polling()
+    # Render-এর জন্য পোর্ট সেট করা হয়েছে
+    port = int(os.environ.get("PORT", 10000))
+    Thread(target=lambda: app.run(host='0.0.0.0', port=port)).start()
+    bot.polling(non_stop=True)
