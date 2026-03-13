@@ -3,254 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bangla Hot Hub | Ultra Premium</title>
+    <title>Bangla Hot Hub</title>
     <style>
-        :root {
-            --netflix-red: #E50914;
-            --dark-bg: #141414;
-            --card-radius: 8px;
-            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: #fff;
-            font-family: var(--font-main);
-            margin: 0;
-            padding: 0;
-            -webkit-user-select: none;
-            overflow-x: hidden;
-        }
-
-        /* Header */
-        header {
-            height: 60px;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            /* Netflix logo style header gradient */
-            background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        header h1 {
-            color: var(--netflix-red);
-            font-size: 24px;
-            font-weight: bold;
-            letter-spacing: -1px;
-            margin: 0;
-        }
-
-        /* Hero Banner with Premium Cover Image */
-        .hero {
-            width: 100%;
-            height: 400px; /* height set as requested */
-            
-            /* এখানে আপনি যেকোনো প্রিমিয়াম কভার ইমেজের লিঙ্ক দিতে পারেন। আপাতত একটি গ্রেডিয়েন্ট দেওয়া আছে। */
-            /* ব্যাকগ্রাউন্ড ইমেজ, গ্রেডিয়েন্ট এবং ডার্ক টোনের কম্বিনেশন */
-            background: linear-gradient(to top, var(--dark-bg) 0%, rgba(20,20,20,0) 30%, rgba(20,20,20,0.4) 100%), 
-                        linear-gradient(135deg, rgba(229,9,20,0.1) 0%, rgba(0,0,0,0) 60%),
-                        url('https://images.unsplash.com/photo-1594782078968-2b07656d7bb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
-            
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; /* elements go to bottom */
-            align-items: center;
-            padding-bottom: 25px; /* play button padding */
-        }
-
-        /* Netflix-Style Play Button */
-        .hero-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 12px 35px;
-            font-weight: bold;
-            border-radius: 4px;
-            font-size: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .hero-btn:active {
-            transform: scale(0.96);
-            background: #ddd;
-        }
-
-        /* Section and Grid as in screenshot */
-        .section-title {
-            padding: 25px 0 10px 15px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 column grid */
-            gap: 10px;
-            padding: 0 15px 100px 15px;
-        }
-
-        /* Card with thumb overlay text */
-        .video-card {
-            position: relative;
-            border-radius: var(--card-radius);
-            overflow: hidden;
-            aspect-ratio: 2/3; /* aspect like screenshot */
-            background: #222;
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-
-        .video-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-            /* darker text shadow for better reading */
-            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
-            font-size: 13px;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-            color: #fff;
-            pointer-events: none;
-        }
-
-        /* Player as before, fullscreen overlay */
-        #player-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 9999;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        #main-video { width: 100%; }
-
-        .ad-screen {
-            text-align: center;
-            color: #fff;
-            padding: 20px;
-            font-size: 16px;
-        }
-
-        .close-player {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 35px;
-            color: #fff;
-            z-index: 10001;
-            cursor: pointer;
-        }
+        :root { --red: #E50914; --bg: #141414; }
+        body { background: var(--bg); color: white; font-family: 'Helvetica Neue', Arial; margin: 0; }
+        header { padding: 15px; background: linear-gradient(to bottom, #000, transparent); position: fixed; width: 100%; z-index: 10; }
+        header h1 { color: var(--red); margin: 0; font-size: 22px; letter-spacing: -1px; }
+        .hero { width: 100%; height: 380px; background: linear-gradient(to top, var(--bg), transparent), url('https://images.unsplash.com/photo-1594782078968-2b07656d7bb2?auto=format&fit=crop&w=800&q=80') center/cover; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 30px; }
+        .play-btn { background: white; color: black; border: none; padding: 10px 35px; font-weight: bold; border-radius: 4px; font-size: 18px; cursor: pointer; }
+        .section-title { padding: 20px 15px 10px; font-size: 18px; font-weight: bold; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 10px; }
+        .card { position: relative; aspect-ratio: 2/3; background: #222; border-radius: 4px; overflow: hidden; }
+        .card img { width: 100%; height: 100%; object-fit: cover; }
+        .card-title { position: absolute; bottom: 0; padding: 8px 5px; background: linear-gradient(to top, black, transparent); width: 100%; font-size: 11px; font-weight: bold; }
+        #player-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; display: none; flex-direction: column; justify-content: center; }
+        video { width: 100%; }
+        .close { position: absolute; top: 20px; right: 20px; font-size: 35px; cursor: pointer; }
     </style>
 </head>
 <body>
-
-    <header>
-        <h1>BANGLA HOT HUB</h1>
-    </header>
-
-    <div class="hero">
-        <button class="hero-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M7 6v12l10-6z"></path>
-            </svg>
-            Play
-        </button>
-    </div>
-
+    <header><h1>BANGLA HOT HUB</h1></header>
+    <div class="hero"><button class="play-btn">▶ Play</button></div>
     <div class="section-title">Trending Now</div>
-    <div class="video-grid" id="video-grid">
-        </div>
+    <div id="video-grid" class="grid"></div>
 
     <div id="player-overlay">
-        <div class="close-player" onclick="closePlayer()">×</div>
-        <div id="ad-info" class="ad-screen">
-            <p>বিজ্ঞাপন চলছে... ৫ সেকেন্ড অপেক্ষা করুন</p>
-        </div>
-        <video id="main-video" controls style="display:none;"></video>
+        <span class="close" onclick="closePlayer()">×</span>
+        <div id="ad-info" style="text-align:center; padding: 20px;">বিজ্ঞাপন চলছে... ৫ সেকেন্ড</div>
+        <video id="main-v" controls style="display:none;"></video>
     </div>
 
     <script>
-        // Updated video data with real titles from image_1.png and matching dummy thumb images
-        const videos = [
-            { id: 1, title: "বড় লোকের বেটি", thumb: "https://images.unsplash.com/photo-1549497538-303791108f94?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-            { id: 2, title: "প্রিমিয়াম ড্রামা", thumb: "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80", src: "https://www.w3schools.com/html/movie.mp4" },
-            { id: 3, title: "স্পেশাল", thumb: "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-            { id: 4, title: "নতুন ভিডিও", thumb: "https://images.unsplash.com/photo-1520116468816-95b69f847357?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80", src: "https://www.w3schools.com/html/movie.mp4" },
-            { id: 5, title: "হট এপিসোড", thumb: "https://images.unsplash.com/photo-1510771957249-e0d0554c0e35?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-            { id: 6, title: "সেরা কালেকশন", thumb: "https://images.unsplash.com/photo-1536924430914-91f9e2041b83?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80", src: "https://www.w3schools.com/html/movie.mp4" }
-        ];
+        // তোমার Render লিঙ্ক এখানে বসাও (শেষে /get_videos থাকবে)
+        const API = 'https://bangla-hot-hub-072.onrender.com/get_videos'; 
 
-        const grid = document.getElementById('video-grid');
-
-        videos.forEach(v => {
-            const card = document.createElement('div');
-            card.className = 'video-card';
-            card.onclick = () => openPlayer(v.src);
-            card.innerHTML = `
-                <img src="${v.thumb}" alt="thumb">
-                <div class="card-overlay">${v.title}</div>
-            `;
-            grid.appendChild(card);
-        });
-
-        // Ad logic for video play
-        let timer = null;
-        function openPlayer(source) {
-            const overlay = document.getElementById('player-overlay');
-            const video = document.getElementById('main-video');
-            const adInfo = document.getElementById('ad-info');
-
-            overlay.style.display = 'flex';
-            adInfo.style.display = 'block';
-            video.style.display = 'none';
-
-            let count = 5;
-            adInfo.innerHTML = `<p>বিজ্ঞাপন চলছে... ${count}s</p>`;
-            
-            clearInterval(timer); // ensure no double timer
-            timer = setInterval(() => {
-                count--;
-                adInfo.innerHTML = `<p>বিজ্ঞাপন চলছে... ${count}s</p>`;
-                if(count <= 0) {
-                    clearInterval(timer);
-                    adInfo.style.display = 'none';
-                    video.src = source;
-                    video.style.display = 'block';
-                    video.play();
-                }
-            }, 1000);
+        async function load() {
+            try {
+                const r = await fetch(API);
+                const videos = await r.json();
+                const g = document.getElementById('video-grid');
+                g.innerHTML = videos.map(v => `
+                    <div class="card" onclick="play('${v.file_id}')">
+                        <img src="${v.thumb}">
+                        <div class="card-title">${v.title}</div>
+                    </div>`).join('');
+            } catch(e) { console.log("বট অফলাইন"); }
         }
 
-        function closePlayer() {
-            document.getElementById('player-overlay').style.display = 'none';
-            const v = document.getElementById('main-video');
-            v.pause();
-            v.src = "";
-            clearInterval(timer);
+        function play(id) {
+            const ov = document.getElementById('player-overlay');
+            ov.style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('ad-info').style.display = 'none';
+                const v = document.getElementById('main-v');
+                v.style.display = 'block';
+                // ভিডিওর সোর্স ফাইল আইডি দিয়ে প্লে হবে (বটের সাথে কানেক্টেড থাকতে হবে)
+                v.src = "https://your-streaming-link.com/" + id; 
+                v.play();
+            }, 5000);
         }
+
+        function closePlayer() { 
+            location.reload(); // রিসেট করার জন্য সহজ উপায়
+        }
+        window.onload = load;
     </script>
 </body>
-  </html>
+</html>
